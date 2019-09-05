@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Titillium Web', sans-serif;
+    background-color: #333;
+    color: #eee;
+}
+
+header {
+    padding: .25em;
+    text-align: center;
+    background: royalblue;
+}
+
+.superhero-list {
+    width: 85%;
+    max-width: 30rem;
+    margin: 2em auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.hero {
+    margin: .5em 0;
+    border: 2px solid royalblue;
+
+    display: flex;
+
+    text-align: center;
+}
+    .hero h2 {
+        background-color: royalblue;
+        font-weight: lighter;
+    }
+    .hero img {
+        width: 4.75rem;
+        height: auto;
+        object-fit: cover;
+
+        /* background-image: url('https://www.superherodb.com/pictures2/portraits/10/100/639.jpg');
+        background-position: center;
+        background-size: cover; */
+    }
+    .hero .hero-info {
+        display: flex;
+        flex-direction: column;
+        padding: .25em .5em 0;
+        width: 100%;
+    }
+        .hero-info .hero-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1em;
+            padding: 0 2em;
+        }
+            .hero-stats div:nth-child(1) h4 {color: coral}
+            .hero-stats div:nth-child(2) h4 {color: lime}
+            .hero-stats div:nth-child(3) h4 {color: cornflowerblue}
