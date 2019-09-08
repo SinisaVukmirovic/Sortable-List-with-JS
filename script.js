@@ -1,124 +1,90 @@
-// let heroes = [
-//     // 'Wonder Woman',
-//     // 'Two-Face',
-//     // 'Wolverine',
-//     // 'Hercules',
-//     // 'Captain America',
-//     // 'Luke Skywalker',
-//     // 'Yoda',
-//     // 'Black Knight III',
-//     // 'Poison Ivy',
-//     // 'Darth Vader',
-//     // 'Thor',
-//     'Superman',
-//     'Aurora',
-//     'Riddler',
-//     'Iron Man'
-// ];
-
-let ids = [
-    // 'Wonder Woman',
-    // 'Two-Face',
-    // 'Wolverine',
-    // 'Hercules',
-    // 'Captain America',
-    // 'Luke Skywalker',
-    // 'Yoda',
-    // 'Black Knight III',
-    // 'Poison Ivy',
-    // 'Darth Vader',
-    // 'Thor',
+let heroIds = [
+    '208',
     '70',
-    '322',
-    '374',
-    '720'
+    '729',
+    '644',
+    '370',
+    '620',
+    '686',
+    '659',    
+    '289',
+    '346',
+    '418',
+    '332'
 ];
-
-let superHeroData = [];
 
 const superheroListElem = document.querySelector('.superhero-list');
 
 function getHeroesInformation(hero) {
-    superHeroApi(hero).then(results => {
-        console.log(results);
-        
-        
-        let heroElem = document.createElement('div');
-        heroElem.classList.add('hero');
+    superHeroApi(hero)
+    .then(results => {
 
-        heroElem.innerHTML = `
-            <img src="${results.image.url}" alt="Superhero Profile Image">
+        let superHeroData = [];
 
-            <div class="hero-info">
-                <h2>${results.name}</h2>
-                <div class="hero-stats">
-                    <div>
-                        <h5>Strength</h5>
-                        <h3>${results.powerstats.strength}</h3>
-                    </div>
-                    <div>
-                        <h5>Speed</h5>
-                        <h3>${results.powerstats.speed}</h3>
-                    </div>
-                    <div>
-                        <h5>Power</h5>
-                        <h3>${results.powerstats.power}</h3>
-                    </div>
-                </div>
-            </div>
-        `;
+        superHeroData.push(
+            {
+                name: results.name,
+                img: results.images.md,
+                power: results.powerstats.power,
+                speed: results.powerstats.speed,
+                strength: results.powerstats.strength
+            }
+        );
 
-        superheroListElem.appendChild(heroElem);
+        superHeroData.forEach(hero => {
+            displayData(hero);
+        });
     })
     .catch(err => {
         console.log(err);
     });
 }
 
+function displayData(hero) {
+    let heroElem = document.createElement('div');
+    heroElem.classList.add('hero');
+
+    heroElem.innerHTML = `
+        <img src="${hero.img}" alt="Superhero Profile Image">
+
+        <div class="hero-info">
+            <h2>${hero.name}</h2>
+            <div class="hero-stats">
+                <div>
+                    <h4>Power</h4>
+                    <h3>${hero.power}</h3>
+                </div>
+                <div>
+                    <h4>Speed</h4>
+                    <h3>${hero.speed}</h3>
+                </div>
+                <div>
+                    <h4>Strength</h4>
+                    <h3>${hero.strength}</h3>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    superheroListElem.appendChild(heroElem);
+}
+
 async function superHeroApi(hero) {
-    // let apiBaseUrl = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/2354274968169765/search/`;
-    let apiBaseUrl = `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/2354274968169765/`;
+    let apiBaseUrl = `https://cdn.rawgit.com/akabab/superhero-api/0.2.0/api/id/`;
 
     let options = { 
         method: 'GET',
         headers: {
-            "Accept" : "application/json" 
+          "Accept" : "application/json"
         }
     };
-    
-    let response = await fetch(`${apiBaseUrl}${hero}`, options);
+
+    let response = await fetch(`${apiBaseUrl}${hero}.json`, options);
     let data = await response.json();
-    // let populate = await superHeroData.push(
-    //     {
-    //         name: `${data.name}`,
-    //         image: `${data.image.url}`
-    //     }
-    // );
+
     return data;
-    
-
 }
 
-for (let hero of ids) {
+heroIds.forEach(hero => {
     getHeroesInformation(hero);
-}
-
-// const btn = document.querySelector('.btn');
-// btn.addEventListener('click', getData);
-
-// function getData() {
-    // for (let heroData of populate) {
-    //     let heroElem = document.createElement('div');
-    //     heroElem.classList.add('hero');
-    
-    //     heroElem.innerHTML = `
-    //         <img src="${heroData.image}" alt="Superhero Profile Image">
-    
-    //         <div class="hero-info">
-    //             <h2>${heroData.name}</h2>
-    //         </div>
-    //     `;
-    
-    //     superheroListElem.appendChild(heroElem);
-    // }
-// }
+});

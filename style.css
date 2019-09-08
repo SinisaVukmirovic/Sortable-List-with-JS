@@ -8,8 +8,13 @@
 
 body {
     font-family: 'Titillium Web', sans-serif;
-    background-color: #333;
     color: #eee;
+    background-color: #333;
+    background: url('jok-bat.jpg'), linear-gradient(to right, transparent, black, black, transparent);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
 }
 
 header {
@@ -40,13 +45,9 @@ header {
         font-weight: lighter;
     }
     .hero img {
-        width: 4.75rem;
+        width: 4.5rem;
         height: auto;
         object-fit: cover;
-
-        /* background-image: url('https://www.superherodb.com/pictures2/portraits/10/100/639.jpg');
-        background-position: center;
-        background-size: cover; */
     }
     .hero .hero-info {
         display: flex;
@@ -57,7 +58,7 @@ header {
         .hero-info .hero-stats {
             display: flex;
             justify-content: space-between;
-            margin-top: 1em;
+            margin-top: .5em;
             padding: 0 2em;
         }
             .hero-stats div:nth-child(1) h4 {color: coral}
